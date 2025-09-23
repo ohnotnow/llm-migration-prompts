@@ -7,7 +7,7 @@ You are converting a Laravel application from Bulma CSS framework to FluxUI (Liv
 
 ### 1. Initial Setup
 - Read the overall guidence from the creator of Livewire and FluxUI - `./FLUX_PATTERNS.md`
-- Read our notes on the conversion process - `./MIGRATION_PLAYBOOK.md`
+- Read our notes on the conversion process - `./BULMA_TO_FLUX.md`
 - Read through 5 templates at a time from `TEMPLATES_TODO.md`
 - Use `mcp__laravel-boost__search-docs` tool to search for FluxUI component documentation
 - Check existing converted templates to understand established patterns
