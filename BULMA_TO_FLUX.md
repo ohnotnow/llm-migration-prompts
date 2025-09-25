@@ -53,9 +53,7 @@
 * **Date fields (always convert):** Replace **all date inputs**—both `type="date"` and any inputs using Pikaday—with Flux date picker; **values in ISO `Y-m-d`**.
 
 ```blade
-<flux:date-picker name="date" value="{{ old('date', now()->format('Y-m-d')) }}" label="Date">
-  <x-slot name="trigger"><flux:date-picker.input /></x-slot>
-</flux:date-picker>
+<flux:date-picker name="date" value="{{ old('date', now()->format('Y-m-d')) }}" label="Date" />
 ```
 
 * **Email inputs:** Use `type="email"`.
