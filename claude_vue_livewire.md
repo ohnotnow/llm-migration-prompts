@@ -96,11 +96,7 @@ When working through conversions:
                     <flux:select.option value="user" :selected="$user->role == 'user'">User</flux:select.option>
                 </flux:select>
                 
-                <flux:date-picker name="start_date" value="{{ old('start_date', now()->format('Y-m-d')) }}" label="Start Date">
-                    <x-slot name="trigger">
-                        <flux:date-picker.input />
-                    </x-slot>
-                </flux:date-picker>
+                <flux:date-picker name="start_date" value="{{ old('start_date', now()->format('Y-m-d')) }}" label="Start Date" />
                 
                 <flux:separator />
                 
@@ -111,8 +107,7 @@ When working through conversions:
 </x-layouts.app>
 ```
 
-Note: if the new template will be a livewire component, you do not need the <x-layouts.app> wrapper - livewire components 
-extend the base layout by default.
+Note: if the new template will be a livewire component, you do not need the <x-layouts.app> wrapper - livewire components extend the base layout by default.
 
 ---
 
