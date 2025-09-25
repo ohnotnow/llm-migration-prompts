@@ -1,13 +1,13 @@
 # Playbook A — Bulma/Blade ➜ FluxUI + Tailwind (First Pass, No Livewire) — Revised
 
-**Goal:** Replace Bulma markup and styles with FluxUI components + Tailwind utilities while preserving existing Blade/Vue code **verbatim**. This is a mechanical UI pass. **Do not** introduce Livewire or change/patch any JS behaviour. Vue directives remain in the templates, and Vue is **not initialised** in this pass so broken interactivity reveals where behaviour exists.
+**Goal:** Replace Bulma markup and styles with FluxUI components + Tailwind utilities while preserving existing Blade/Vue/Livewire code **verbatim**. This is a mechanical UI pass. **Do not** introduce new Livewire or change/patch any JS behaviour apart from the case of the flux:date-picker (as mentioned - the format the date value expects has changed). Vue directives remain in the templates, and Vue is **not initialised** in this pass so broken interactivity reveals where behaviour exists.
 
 ---
 
 ## 1) Principles
 
 * **Zero Bulma:** Remove all Bulma classes/components and dependencies. No mixing.
-* **Strict preservation of code:** Keep all Blade and Vue directives exactly as they were. Do **not** wrap, shim, or introduce Alpine.
+* **Strict preservation of code:** Keep all Blade, Livewire and Vue directives exactly as they were. Do **not** wrap, shim, or introduce Alpine or new Livewire.
 * **Non‑disruptive to logic:** Do not change controllers, routes, requests, or any JS data flows.
 * **Consistency:** Use Flux components and Tailwind spacing/typography.
 * **A11y by design:** Use Flux labels/props to keep controls properly labelled.
@@ -30,7 +30,7 @@
 | `.title/.subtitle`         | `<flux:heading>` / `<flux:text size="lg">` |         |       |            |
 | `.box`                     | `<flux:card>`                              |         |       |            |
 | `.message`/`.message-body` | `<flux:callout>`                           |         |       |            |
-| `.button` variants         | \`\<flux\:button variant="primary          | outline | ghost | danger">\` |
+| `.button`                  | `<flux:button />`                          |         |       |            |
 | `<hr>`                     | `<flux:separator />`                       |         |       |            |
 | `.input`/`.textarea`       | `<flux:input>` / `<flux:textarea>`         |         |       |            |
 | `.select > select`         | `<flux:select>` + `<flux:select.option>`   |         |       |            |
@@ -64,11 +64,11 @@
 
 ## 5) Layout & Spacing
 
-* Keep the existing Blade layout pattern (e.g., `<x-layouts.app>` or project‑equivalent); ensure a **single root** node in views.
+* Ensure each main (not partial) template uses `<x-layouts.app>`; ensure a **single root** node in views.
 * Wrap form content in `div.flex-1.space-y-6` for vertical rhythm.
 * Use width constraints: `max-w-xl`, `max-w-2xl`, `max-w-4xl`.
 * Don’t add margins to `<flux:separator />` when inside rhythm wrappers.
-* Add `cursor-pointer` to custom clickable containers (Tailwind reset removes default pointer on non‑button elements).
+* Add `cursor-pointer` to clickable containers (Tailwind reset removes default pointer on non‑button elements).
 
 ---
 

@@ -65,10 +65,9 @@ Before:
 
 After:
 ```blade
-<flux:date-picker name="date" wire:model="$livewireDate" label="Date Label" />
+<flux:date-picker name="date" value="{{ $date->format('Y-m-d') }}" label="Date Label" />
 ```
-
-Note: Change laravel model date format from `d/m/Y` to `Y-m-d` for ISO compatibility.
+Ensure the value you pass into <flux:date-picker> is already in ISO Y-m-d format (for example via old('date', optional($date)->format('Y-m-d')) inside the Blade template). Keep the underlying model/controller logic unchanged during this pass.
 
 ##### Email input
 If you come across an input which seems to be an email input, but is not using the email type attribute, then please change the type from 'text' to 'email'.
@@ -122,7 +121,7 @@ Use:
 
 #### Typography
 - Use flux:text for all text
-- Use flux:heading for all headings - only the main page title should use a size attribute of size="xl"
+- Use flux:heading for all headings - only the main page title (usually an h3 tag with 'heading is-3' classes) should use a size attribute of size="xl"
 - Ignore any bulma is-size-X classes - just use regular flux:text
 - Bulma has-text-weight-bold styles should use flux:text with variant="strong"
 
@@ -144,9 +143,6 @@ FluxUI has built-in colour mechanisms and dark mode support - there is no need t
 ```blade
 <flux:button>Default</flux:button>
 <flux:button variant="primary">Primary</flux:button>
-<flux:button variant="outline">Outline</flux:button>
-<flux:button variant="ghost">Ghost</flux:button>
-<flux:button variant="danger">Delete</flux:button>
 ```
 
 #### Callouts
@@ -200,18 +196,16 @@ Before marking a template as complete, verify:
 - [ ] Select elements use `flux:select.option`
 - [ ] Modern blade attribute binding used (`:selected`, `:disabled`, etc.)
 - [ ] Proper spacing wrapper applied (`<div class="flex-1 space-y-6">`)
-- [ ] Dark mode classes added where appropriate
 - [ ] Component variants properly applied
-- [ ] Vue.js functionality preserved (if applicable)
+- [ ] Vue.js markup/tags preserved (if applicable)
+- [ ] Livewire component markup/tags preserved (if applicable)
 
 ### 8. Testing Approach
 
 After conversion:
 1. Check visual appearance matches intended design
-2. Verify form submissions work correctly
-3. Test date picker functionality
-4. Ensure responsive behavior works
-5. Check dark mode appearance
+2. Test date picker functionality
+3. Ensure responsive behavior works
 
 ### 9. Documentation Resources
 
@@ -284,7 +278,7 @@ When working through conversions:
     <div class="max-w-xl">
         <flux:heading size="xl">Create User</flux:heading>
         
-        <form method="POST" action="{{ route('user.store') }}" class="mt-6">>
+        <form method="POST" action="{{ route('user.store') }}" class="mt-6">
             @csrf
             
             <div class="flex-1 space-y-6">
